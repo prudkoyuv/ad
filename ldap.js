@@ -12,7 +12,7 @@ const client = ldap.createClient({
     url: `ldap://${server}`
 });
 
-client.bind(userPrincipalName,password,err => {
+client.bind(userPrincipalName, password, err => {
     assert.ifError(err);
 });
 
@@ -22,11 +22,11 @@ const searchOptions = {
     filter: `(userPrincipalName=p*)`
 };
 
-client.search(adSuffix,searchOptions,(err,res) => {
+client.search(adSuffix, searchOptions, (err, res) => {
     assert.ifError(err);
 
     res.on('searchEntry', entry => {
-        console.log('--'+entry.object.mail);
+        console.log('--' + entry.object.mail);
     });
     res.on('searchReference', referral => {
         console.log('referral: ' + referral.uris.join());
@@ -35,11 +35,12 @@ client.search(adSuffix,searchOptions,(err,res) => {
         console.error('error: ' + err.message);
     });
     res.on('end', result => {
-        console.log('---'+result);
+        console.log('---' + result);
     });
 });
 
 // Wrap up
-client.unbind( err => {
+client.unbind(err => {
     assert.ifError(err);
 });
+var v = 0
