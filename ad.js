@@ -15,3 +15,6 @@ ad.user().get('CN=Пру*').then(users => {
 });
 
 var a
+
+
+
